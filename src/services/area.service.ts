@@ -11,7 +11,10 @@ export class AreaService {
     ) { }
 
     async create(area: any) {
-        return await this.AreaRepository.create(area);
+        console.log(area)
+        let res = await this.AreaRepository.save(area);
+        console.log(res)
+        return res
     }
 
     async findAll(): Promise<Area[]> {

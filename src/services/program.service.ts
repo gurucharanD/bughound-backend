@@ -11,7 +11,7 @@ export class ProgramService {
     ) { }
 
     async create(program: any): Promise<any> {
-        return await this.ProgramRepository.create(program);
+        return await this.ProgramRepository.save(program);
     }
 
     async findAll(): Promise<Program[]> {
