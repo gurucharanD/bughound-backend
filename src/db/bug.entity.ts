@@ -1,13 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Area } from './area.entity';
 import { Employee } from './employee.entity';
+import { Program } from './program.entity';
 
 @Entity()
 export class Bug {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    program: string;
+    @OneToOne(() => Program)
+    @JoinColumn()
+    program: number;
 
     @Column()
     reportType: string;
@@ -34,8 +37,9 @@ export class Bug {
     @Column({ type: 'date' })
     reportedDate: string;
 
-    @Column()
-    functionalArea: string;
+    @OneToOne(() => Area)
+    @JoinColumn()
+    functionalArea: number;
 
     @OneToOne(() => Employee)
     @JoinColumn()
