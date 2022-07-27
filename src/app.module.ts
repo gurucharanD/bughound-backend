@@ -1,3 +1,4 @@
+import { BugService } from './services/bug.service';
 import { Employee } from './db/employee.entity';
 import { Module } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
@@ -11,6 +12,8 @@ import { AreaController } from './controllers/area.controller';
 import { ProgramService } from './services/program.service';
 import { EmployeeService } from './services/employee.service';
 import { AreaService } from './services/area.service';
+import { Bug } from './db/bug.entity';
+import { BugController } from './controllers/bug.controler';
 
 @Module({
   imports: [
@@ -21,12 +24,12 @@ import { AreaService } from './services/area.service';
       username: 'root',
       password: 'password',
       database: 'bughound',
-      entities: [Employee, Area, Program],
+      entities: [Employee, Area, Program, Bug],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Employee, Area, Program])
+    TypeOrmModule.forFeature([Employee, Area, Program, Bug])
   ],
-  controllers: [AppController, EmployeeController, ProgramController, AreaController],
-  providers: [AppService, ProgramService, EmployeeService, AreaService],
+  controllers: [AppController, EmployeeController, ProgramController, AreaController, BugController],
+  providers: [AppService, ProgramService, EmployeeService, AreaService, BugService],
 })
 export class AppModule { }
