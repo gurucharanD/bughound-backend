@@ -1,13 +1,14 @@
 import { Bug } from './../db/bug.entity';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
+import { Connection, createQueryBuilder, getRepository, Repository } from 'typeorm';
 
 @Injectable()
 export class BugService {
     constructor(
         @InjectRepository(Bug)
         private BugRepository: Repository<Bug>,
+        @InjectConnection() private readonly connection: Connection
     ) { }
 
     async create(bug: any) {
@@ -18,7 +19,9 @@ export class BugService {
     }
 
     async findAll(): Promise<Bug[]> {
-        return await this.BugRepository.find();
+        // return await this.BugRepository.find();
+        return this.connection.query('SELECT * FROM bug;');
+
     }
 
     async findOne(id: number): Promise<Bug> {
