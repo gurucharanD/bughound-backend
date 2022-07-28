@@ -33,6 +33,7 @@ export class BugService {
     }
 
     async update(id: string, body: any): Promise<any> {
+        console.log(body)
         return await this.BugRepository.createQueryBuilder().update(body).where({ id }).execute()
     }
 }
