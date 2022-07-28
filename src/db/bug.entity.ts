@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { Area } from './area.entity';
 import { Employee } from './employee.entity';
 import { Program } from './program.entity';
@@ -8,7 +8,7 @@ export class Bug {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => Program)
+    @ManyToOne(() => Program)
     @JoinColumn()
     program: number;
 
@@ -30,18 +30,18 @@ export class Bug {
     @Column()
     suggestedFix: string;
 
-    @OneToOne(() => Employee)
+    @ManyToOne(() => Employee)
     @JoinColumn()
     reportedBy: number;
 
     @Column({ type: 'date' })
     reportedDate: string;
 
-    @OneToOne(() => Area)
+    @ManyToOne(() => Area)
     @JoinColumn()
     functionalArea: number;
 
-    @OneToOne(() => Employee)
+    @ManyToOne(() => Employee)
     @JoinColumn()
     assignedTo: number;
 
@@ -60,14 +60,14 @@ export class Bug {
     @Column()
     resolutionVersion: string;
 
-    @OneToOne(() => Employee)
+    @ManyToOne(() => Employee)
     @JoinColumn()
     resolvedBy: number;
 
     @Column({ type: 'date' })
     resolvedDate: string;
 
-    @OneToOne(() => Employee)
+    @ManyToOne(() => Employee)
     @JoinColumn()
     testedBy: number;
 
