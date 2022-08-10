@@ -11,4 +11,6 @@ export class Employee {
     @Column()
     lastName: string;
 
+    @Column()
+    accessLevel: number;
 }

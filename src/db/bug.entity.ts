@@ -37,9 +37,8 @@ export class Bug {
     @Column({ type: 'date' })
     reportedDate: string;
 
-    @ManyToOne(() => Area)
-    @JoinColumn()
-    functionalArea: number;
+    @Column()
+    functionalArea: string;
 
     @ManyToOne(() => Employee)
     @JoinColumn()

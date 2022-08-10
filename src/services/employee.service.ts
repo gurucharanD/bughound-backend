@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class EmployeeService {
+
     constructor(
         @InjectRepository(Employee)
         private EmployeeRepository: Repository<Employee>,
@@ -28,5 +29,12 @@ export class EmployeeService {
 
     async update(id: string, body: any): Promise<any> {
         return await this.EmployeeRepository.createQueryBuilder().update(body).where({ id }).execute()
+    }
+
+    async login(name: any) {
+        console.log(name)
+        return await this.EmployeeRepository.findOneBy({
+            firstName: name
+        });
     }
 }

@@ -19,6 +19,11 @@ export class EmployeeController {
         return await this.service.create(body);
     }
 
+    @Post('login')
+    async login(@Body() body: any) {
+        return await this.service.login(body.name);
+    }
+
     @Put(':id')
     async update(@Param('id') id: any, @Body() body: any) {
         return await this.service.update(id, body);

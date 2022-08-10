@@ -7,4 +7,7 @@ export class Program {
 
     @Column()
     name: string;
+
+    @Column({ default: "", length: 500 })
+    area: string;
 }
